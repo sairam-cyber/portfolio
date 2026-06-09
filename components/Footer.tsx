@@ -56,8 +56,8 @@ export default function Footer() {
           </button>
         </div>
 
-        <motion.a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=sairambebarta999@gmail.com&su=Collaboration%20Inquiry&body=Hi%20Sai%20Ram%2C%0A%0AI%20visited%20your%20portfolio%20and%20would%20love%20to%20connect%20regarding..."
+         <motion.a
+          href="https://mail.google.com/mail/?extsrc=mailto&url=mailto%3Asairambebarta999%40gmail.com%3Fsubject%3DCollaboration%20Inquiry%26body%3DHi%20Sai%20Ram%2C%0A%0AI%20visited%20your%20portfolio%20and%20would%20love%20to%20connect%20regarding..."
           target="_blank"
           rel="noopener noreferrer"
           className="w-full sm:w-auto bg-orange-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-orange-500 hover:scale-105 transition-all text-center flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20"
