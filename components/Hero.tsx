@@ -115,7 +115,7 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
   };
 
   const wordVariants = {
-    hidden: { y: "100%", opacity: 0 },
+    hidden: { y: 50, opacity: 0 },
     visible: { 
       y: 0, 
       opacity: 1, 
@@ -170,24 +170,20 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
           </motion.h2>
 
           <motion.h1
-            className="text-6xl md:text-8xl font-bold mb-4 tracking-tight leading-tight text-black overflow-hidden py-1"
+            className="text-6xl md:text-8xl font-bold mb-4 tracking-tight leading-tight text-black py-1"
             variants={containerVariants}
             initial="hidden"
             animate={animateTrigger ? "visible" : "hidden"}
           >
-            <span className="inline-block overflow-hidden mr-4">
-              {nameFirst.map((word, i) => (
-                <motion.span key={i} className="inline-block mr-2" variants={wordVariants}>
-                  {word}
-                </motion.span>
-              ))}
-            </span>
-            <br />
-            <span className="inline-block overflow-hidden">
-              <motion.span className="inline-block text-black" variants={wordVariants}>
-                {nameLast}
+            {nameFirst.map((word, i) => (
+              <motion.span key={i} className="inline-block mr-4" variants={wordVariants}>
+                {word}
               </motion.span>
-            </span>
+            ))}
+            <br />
+            <motion.span className="inline-block text-black" variants={wordVariants}>
+              {nameLast}
+            </motion.span>
           </motion.h1>
 
           <motion.h3
