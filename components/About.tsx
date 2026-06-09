@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
   Briefcase, GraduationCap, Code2, Database, Layout, Terminal,
-  Award, BookOpen, Wrench, ShieldCheck, Sparkles, Brain,
+  Award, BookOpen, Wrench, ShieldCheck, Sparkles, Brain, Trophy,
 } from "lucide-react";
 
 /* ── Tab definitions ── */
@@ -177,6 +177,18 @@ function SkillsTab() {
    ════════════════════════════════════════════ */
 function CertificationsTab() {
   const certs = [
+    {
+      title: "BPUT Odisha Hackathon Participant & Innovator",
+      issuer: "Biju Patnaik University of Technology (BPUT), Odisha",
+      desc: "Developed 'AI Resume Builder for Blue Collar Professionals' - a Flutter-based mobile application with multilingual support, ATS score evaluation, and template customization.",
+      icon: Trophy,
+    },
+    {
+      title: "GIET Bhubaneswar Hackathon 2025 Participant",
+      issuer: "GIET University, Bhubaneswar",
+      desc: "Developed 'Navmarg.tech' - a smart product scanning system featuring QR/barcode scanning, ML object recognition, and multilingual support.",
+      icon: Award,
+    },
     {
       title: "Summer Research Internship",
       issuer: "National Institute of Technology (NIT) Rourkela",
