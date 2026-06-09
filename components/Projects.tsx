@@ -32,8 +32,8 @@ export default function Projects() {
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   return (
-    <section ref={sectionRef} id="portfolio" className="py-24 bg-[#0a0a0a] text-white px-6 md:px-12">
-      <div className="max-w-7xl mx-auto">
+    <section ref={sectionRef} className="min-h-screen bg-[#0a0a0a] text-white px-6 md:px-12 flex items-center">
+      <div className="max-w-7xl mx-auto w-full py-24">
         <motion.h2
           className="text-4xl font-bold mb-16 text-center"
           initial={{ opacity: 0, y: 30 }}

@@ -1,40 +1,63 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Experience from "@/components/Experience";
-import Skills from "@/components/Skills";
+import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
+import WelcomeScreen from "@/components/WelcomeScreen";
+
+const SLIDE_COUNT = 4;
 
 export default function Home() {
+  const [showWelcome, setShowWelcome] = useState(true);
+  const [activeSlide, setActiveSlide] = useState(0);
+
   return (
     <>
       <CustomCursor />
-
-      {/* Film Grain Overlay */}
       <div className="grain-overlay" />
 
-      <motion.main
-        className="min-h-screen bg-[#050505] text-white font-sans overflow-x-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        {/* Decorative logo top left */}
-        <div className="absolute top-12 left-12 md:left-24 font-bold text-3xl tracking-tighter z-50 text-black">
-          SB<span className="text-orange-500">.</span>
-        </div>
+      {/* Welcome Intro */}
+      <AnimatePresence>
+        {showWelcome && (
+          <WelcomeScreen onComplete={() => setShowWelcome(false)} />
+        )}
+      </AnimatePresence>
 
-        <Navbar />
-        <Hero />
-        <Experience />
-        <Skills />
-        <Projects />
-        <Footer />
-      </motion.main>
+      <Navbar onNavigate={setActiveSlide} activeSlide={activeSlide} />
+
+      {/* Horizontal Slider */}
+      <div className="h-screen w-screen overflow-hidden bg-[#050505]">
+        <motion.div
+          className="flex h-full"
+          animate={{ x: `${-activeSlide * 100}vw` }}
+          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+        >
+          <div className="min-w-[100vw] h-screen overflow-y-auto"><Hero /></div>
+          <div className="min-w-[100vw] h-screen overflow-y-auto"><About /></div>
+          <div className="min-w-[100vw] h-screen overflow-y-auto"><Projects /></div>
+          <div className="min-w-[100vw] h-screen overflow-y-auto"><Footer /></div>
+        </motion.div>
+      </div>
+
+      {/* Slide Indicators */}
+      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex gap-2">
+        {Array.from({ length: SLIDE_COUNT }, (_, i) => (
+          <button
+            key={i}
+            onClick={() => setActiveSlide(i)}
+            className={`rounded-full transition-all duration-300 ${
+              activeSlide === i
+                ? "w-8 h-2 bg-orange-500"
+                : "w-2 h-2 bg-gray-600 hover:bg-gray-400"
+            }`}
+          />
+        ))}
+      </div>
     </>
   );
 }

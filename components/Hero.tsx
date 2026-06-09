@@ -196,10 +196,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 scroll-indicator">
-        <ChevronDown className="text-orange-500" size={28} />
-      </div>
+
     </section>
   );
 }

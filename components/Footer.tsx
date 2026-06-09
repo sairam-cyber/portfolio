@@ -8,7 +8,7 @@ export default function Footer() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <footer ref={ref} id="contact" className="bg-[#050505] py-16 border-t border-gray-900 text-center">
+    <footer ref={ref} className="min-h-screen bg-[#050505] border-t border-gray-900 text-center flex flex-col items-center justify-center px-6">
       <motion.h2
         className="text-3xl font-bold mb-6"
         initial={{ opacity: 0, y: 20 }}
