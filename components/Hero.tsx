@@ -181,12 +181,12 @@ export default function Hero() {
         </div>
 
         {/* Right Side - Image */}
-        <div className="w-full md:w-1/2 flex items-center justify-center h-full relative">
+        <div className="w-full md:w-1/2 flex items-end justify-center h-full relative">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="h-[45vh] md:h-[75vh] aspect-[681/1024] border border-gray-800 rounded-[2.5rem] bg-gradient-to-b from-[#151515] to-[#0a0a0a] relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+            className="h-[55vh] md:h-[90vh] aspect-[681/1024] relative overflow-hidden"
           >
             <Image
               src="/profile-pic.jpg"
@@ -196,9 +196,11 @@ export default function Hero() {
               className="object-cover object-top filter grayscale hover:grayscale-0 transition-all duration-700"
               priority
             />
-            {/* Soft ambient bottom overlay glow */}
-            <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-black via-black/30 to-transparent z-10" />
-            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[120%] h-[40%] bg-orange-600/15 blur-3xl -z-10" />
+            {/* Seamless edge blending to merge the photo background into the black page background */}
+            <div className="absolute bottom-0 left-0 right-0 h-1/5 bg-gradient-to-t from-black to-transparent z-10" />
+            <div className="absolute top-0 bottom-0 left-0 w-1/5 bg-gradient-to-r from-black to-transparent z-10" />
+            <div className="absolute top-0 bottom-0 right-0 w-1/5 bg-gradient-to-l from-black to-transparent z-10" />
+            <div className="absolute top-0 left-0 right-0 h-1/5 bg-gradient-to-b from-black to-transparent z-10" />
           </motion.div>
         </div>
       </div>
