@@ -181,12 +181,12 @@ export default function Hero() {
         </div>
 
         {/* Right Side - Image */}
-        <div className="w-full md:w-1/2 flex items-end justify-center h-full relative pb-0">
+        <div className="w-full md:w-1/2 flex items-center justify-center h-full relative">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="h-[48vh] md:h-[85vh] aspect-[681/1024] border border-gray-800 rounded-t-[3rem] bg-gradient-to-b from-[#151515] to-[#0a0a0a] relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+            className="h-[45vh] md:h-[75vh] aspect-[681/1024] border border-gray-800 rounded-[2.5rem] bg-gradient-to-b from-[#151515] to-[#0a0a0a] relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
           >
             <Image
               src="/profile-pic.jpg"
