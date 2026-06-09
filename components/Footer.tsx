@@ -88,26 +88,7 @@ export default function Footer() {
   };
 
   return (
-    <footer ref={ref} className="min-h-screen bg-[#050505] border-t border-gray-900 text-center flex flex-col items-center justify-center px-6 py-20">
-      <motion.h2
-        className="text-3xl font-bold mb-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
-      >
-        <span className="text-white">Let&apos;s </span>
-        <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">Connect</span>
-      </motion.h2>
-
-      <motion.p
-        className="text-gray-400 mb-8 max-w-lg mx-auto px-6 text-sm md:text-base"
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.1 }}
-      >
-        I am currently looking for new opportunities in Full Stack Web Development and backend architecture. Whether you have a question or just want to say hi, my inbox is always open!
-      </motion.p>
-
+    <footer ref={ref} className="min-h-screen bg-[#050505] border-t border-gray-900 text-center flex flex-col items-center justify-center px-6 pt-32 pb-16">
       {/* IDE Container */}
       <motion.div
         className="w-full max-w-6xl mx-auto bg-[#0b0f19]/80 border border-gray-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col h-[580px] mb-8 text-left backdrop-blur-xl"
