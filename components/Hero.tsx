@@ -186,7 +186,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="w-[85%] h-[85%] md:w-[90%] md:h-[90%] border border-gray-800 rounded-t-[3rem] bg-gradient-to-b from-[#151515] to-[#0a0a0a] relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+            className="h-[48vh] md:h-[85vh] aspect-[681/1024] border border-gray-800 rounded-t-[3rem] bg-gradient-to-b from-[#151515] to-[#0a0a0a] relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
           >
             <Image
               src="/profile-pic.jpg"
@@ -197,7 +197,7 @@ export default function Hero() {
               priority
             />
             {/* Soft ambient bottom overlay glow */}
-            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
+            <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-black via-black/30 to-transparent z-10" />
             <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[120%] h-[40%] bg-orange-600/15 blur-3xl -z-10" />
           </motion.div>
         </div>
