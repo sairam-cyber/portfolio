@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { Github, Linkedin, Mail, User, ChevronDown } from "lucide-react";
 
 /* ── Magnetic wrapper ── */
@@ -182,16 +183,21 @@ export default function Hero() {
         {/* Right Side - Image */}
         <div className="w-full md:w-1/2 flex items-end justify-center h-full relative pb-0">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="w-[80%] h-[80%] md:w-[90%] md:h-[90%] border-2 border-dashed border-gray-700/50 rounded-t-[3rem] flex flex-col items-center justify-center text-gray-500 gap-4 bg-gray-900/30 backdrop-blur-sm relative overflow-hidden"
+            className="w-[85%] h-[85%] md:w-[90%] md:h-[90%] border border-gray-800 rounded-t-[3rem] bg-gradient-to-b from-[#151515] to-[#0a0a0a] relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
           >
-            {/* Note: Replace this entire div with <Image src="/profile-pic.png" alt="Sai Ram" width={500} height={600} className="object-cover" /> */}
-            <User size={64} className="text-gray-700 opacity-50" />
-            <p className="text-lg font-medium text-center px-4">Your Photo Placeholder</p>
-            <p className="text-sm text-center px-4">Replace with your transparent PNG</p>
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120%] h-[50%] bg-gradient-to-t from-orange-600/20 to-transparent blur-3xl -z-10" />
+            <Image
+              src="/profile-pic.png"
+              alt="Sai Ram Bebarta"
+              fill
+              className="object-cover object-top filter grayscale hover:grayscale-0 transition-all duration-700"
+              priority
+            />
+            {/* Soft ambient bottom overlay glow */}
+            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
+            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[120%] h-[40%] bg-orange-600/15 blur-3xl -z-10" />
           </motion.div>
         </div>
       </div>

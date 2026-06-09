@@ -29,7 +29,7 @@ export default function Footer() {
       </motion.p>
 
       <motion.a
-        href="mailto:sairambebartall1@gmail.com"
+        href="mailto:sairambebarta999@gmail.com?subject=Collaboration%20Inquiry&body=Hi%20Sai%20Ram%2C%0A%0AI%20visited%20your%20portfolio%20and%20would%20love%20to%20connect%20regarding..."
         className="inline-block bg-orange-600 text-white px-8 py-4 rounded-full font-bold hover:bg-orange-500 hover:scale-105 transition-all shadow-lg shadow-orange-500/25 pulse-glow"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={isInView ? { opacity: 1, scale: 1 } : {}}
