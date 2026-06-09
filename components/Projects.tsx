@@ -1,0 +1,70 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { ExternalLink } from "lucide-react";
+
+const projects = [
+  {
+    title: "Career Counselling Platform",
+    tech: "FastAPI, Next.js, RAG, LangChain",
+    desc: "Built a document intelligence assistant utilizing FastAPI and Next.js. Developed automated data ingestion pipelines and a dedicated dashboard for generating context-aware insights.",
+  },
+  {
+    title: "Customer Churn Prediction",
+    tech: "React, Node.js, Python, MongoDB",
+    desc: "Full-stack analytics platform. Engineered secure data pipelines with JWT authentication, real-time risk dashboards, and automated PDF reporting features.",
+  },
+  {
+    title: "RealTime Chatting",
+    tech: "MERN Stack, Socket.io, Firebase",
+    desc: "Modern instant messaging application featuring voice notes, secure file sharing, and smart replies. Secured with robust JWT authentication and structured for high concurrency.",
+  },
+  {
+    title: "Medlist: Health Care Platform",
+    tech: "Next.js, MongoDB, Gemini API",
+    desc: "Comprehensive healthcare solution tailored for efficient doctor discovery and automated appointment scheduling, complete with an intelligent integrated chatbot.",
+  },
+];
+
+export default function Projects() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+
+  return (
+    <section ref={sectionRef} id="portfolio" className="py-24 bg-[#0a0a0a] text-white px-6 md:px-12">
+      <div className="max-w-7xl mx-auto">
+        <motion.h2
+          className="text-4xl font-bold mb-16 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          Featured <span className="text-orange-500">Projects</span>
+        </motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.15 + idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -8, transition: { duration: 0.25 } }}
+              className="shimmer-card bg-[#151515]/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 flex flex-col h-full hover:border-orange-500/30 hover:shadow-[0_8px_40px_rgba(249,115,22,0.08)] transition-colors duration-300"
+            >
+              <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
+              <p className="text-orange-500 text-sm font-medium mb-4">{project.tech}</p>
+              <p className="text-gray-400 mb-8 flex-grow">{project.desc}</p>
+              <div className="flex gap-4 mt-auto">
+                <button className="flex items-center gap-2 text-sm font-medium text-white hover:text-orange-500 transition-colors">
+                  <ExternalLink size={16} /> View Source
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,26 +1,151 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Hide default cursor on desktop ── */
+@media (pointer: fine) {
+  * { cursor: none !important; }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #f97316; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #ea580c; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ── Slant Background ── */
+.slant-bg {
+  clip-path: polygon(55% 0, 100% 0, 100% 100%, 40% 100%);
+}
+@media (max-width: 768px) {
+  .slant-bg {
+    clip-path: polygon(0 45%, 100% 35%, 100% 100%, 0% 100%);
   }
 }
 
+/* ── Film Grain Overlay ── */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  30% { transform: translate(7%, -25%); }
+  50% { transform: translate(-15%, 10%); }
+  70% { transform: translate(0%, 15%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+.grain-overlay {
+  position: fixed;
+  inset: -100%;
+  width: 300%;
+  height: 300%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9000;
+  opacity: 0.025;
+  animation: grain 6s steps(8) infinite;
+}
+
+/* ── Shimmer Sweep ── */
+@keyframes shimmer-sweep {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+.shimmer-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  pointer-events: none;
+}
+
+.shimmer-card:hover::after {
+  animation: shimmer-sweep 0.7s ease-in-out;
+}
+
+/* ── Typewriter Cursor Blink ── */
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #f97316; }
+}
+
+.typewriter-cursor {
+  border-right: 2px solid #f97316;
+  animation: blink-caret 0.8s step-end infinite;
+}
+
+/* ── Pulse Glow (CTA Button) ── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(249,115,22,0.25), 0 0 60px rgba(249,115,22,0.1); }
+  50% { box-shadow: 0 0 30px rgba(249,115,22,0.45), 0 0 80px rgba(249,115,22,0.2); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ── Animated Gradient Border ── */
+@keyframes gradient-rotate {
+  0% { --gradient-angle: 0deg; }
+  100% { --gradient-angle: 360deg; }
+}
+
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.gradient-border {
+  position: relative;
+  background: #111;
+  border-radius: 1rem;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--gradient-angle), transparent 60%, #f97316 80%, transparent 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s;
+  animation: gradient-rotate 3s linear infinite;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* ── Floating Particle ── */
+@keyframes float-up {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+}
+
+/* ── Scroll Indicator Bounce ── */
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(12px); opacity: 1; }
+}
+
+.scroll-indicator {
+  animation: scroll-bounce 2.5s ease-in-out infinite;
+}
+
+/* ── Globals ── */
+html { scroll-behavior: smooth; }
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #050505;
+  color: #ffffff;
 }
