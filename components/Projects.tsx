@@ -62,11 +62,9 @@ export default function Projects() {
               }}
               whileHover={{ 
                 y: -10, 
-                scale: 1.02,
-                borderColor: "rgba(249, 115, 22, 0.4)",
-                boxShadow: "0px 15px 35px rgba(249, 115, 22, 0.12)"
+                scale: 1.02
               }}
-              className="shimmer-card bg-[#151515]/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 flex flex-col h-full hover:border-orange-500/30 transition-all duration-300"
+              className="shimmer-card bg-[#151515]/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 hover:border-orange-500/30 hover:shadow-[0_15px_35px_rgba(249,115,22,0.12)] flex flex-col h-full transition-all duration-300"
             >
               <h3 className="text-2xl font-bold mb-2 transition-colors duration-300 group-hover:text-orange-400">{project.title}</h3>
               <p className="text-orange-500 text-sm font-medium mb-4">{project.tech}</p>

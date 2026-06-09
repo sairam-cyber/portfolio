@@ -33,7 +33,7 @@ function ExperienceTab() {
   ];
 
   return (
-    <div className="relative pl-8 ml-4">
+    <div className="relative pl-6 md:pl-8 ml-2 md:ml-4">
       <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-800/50" />
       <motion.div
         className="absolute left-0 top-0 w-px bg-orange-500/60"
@@ -45,24 +45,22 @@ function ExperienceTab() {
         {items.map((item, i) => (
           <motion.div
             key={i}
-            className="relative p-6 bg-[#111]/30 border border-gray-900 rounded-2xl transition-all duration-300"
+            className="relative p-4 md:p-6 bg-[#111]/30 border border-gray-900 rounded-2xl hover:bg-[#111]/70 hover:border-orange-500/30 hover:shadow-[0_4px_20px_rgba(249,115,22,0.05)] transition-all duration-300"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.15 + i * 0.15 }}
             whileHover={{ 
-              x: 8, 
-              backgroundColor: "rgba(17, 17, 17, 0.7)", 
-              borderColor: "rgba(249, 115, 22, 0.3)",
-              boxShadow: "0 4px 20px rgba(249,115,22,0.05)"
+              x: 8
             }}
           >
             <motion.div
-              className="absolute -left-[45px] top-6 bg-black border-2 border-orange-500 p-2 rounded-full z-10"
+              className="absolute -left-[37px] md:-left-[45px] top-6 bg-black border-2 border-orange-500 p-1.5 md:p-2 rounded-full z-10"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ delay: 0.4 + i * 0.15, duration: 0.6 }}
               whileHover={{ scale: 1.2, rotate: 10 }}
             >
-              <Briefcase size={16} className="text-orange-500" />
+              <Briefcase size={14} className="text-orange-500 md:hidden" />
+              <Briefcase size={16} className="text-orange-500 hidden md:block" />
             </motion.div>
             <h3 className="text-lg font-bold text-white">{item.title}</h3>
             <h4 className="text-orange-500 font-medium text-sm mb-2">{item.org}</h4>
@@ -97,7 +95,7 @@ function EducationTab() {
   ];
 
   return (
-    <div className="relative pl-8 ml-4">
+    <div className="relative pl-6 md:pl-8 ml-2 md:ml-4">
       <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-800/50" />
       <motion.div
         className="absolute left-0 top-0 w-px bg-orange-500/60"
@@ -109,24 +107,22 @@ function EducationTab() {
         {items.map((item, i) => (
           <motion.div
             key={i}
-            className="relative p-6 bg-[#111]/30 border border-gray-900 rounded-2xl transition-all duration-300"
+            className="relative p-4 md:p-6 bg-[#111]/30 border border-gray-900 rounded-2xl hover:bg-[#111]/70 hover:border-orange-500/30 hover:shadow-[0_4px_20px_rgba(249,115,22,0.05)] transition-all duration-300"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.15 + i * 0.15 }}
             whileHover={{ 
-              x: 8, 
-              backgroundColor: "rgba(17, 17, 17, 0.7)", 
-              borderColor: "rgba(249, 115, 22, 0.3)",
-              boxShadow: "0 4px 20px rgba(249,115,22,0.05)"
+              x: 8
             }}
           >
             <motion.div
-              className="absolute -left-[45px] top-6 bg-black border-2 border-orange-500 p-2 rounded-full z-10"
+              className="absolute -left-[37px] md:-left-[45px] top-6 bg-black border-2 border-orange-500 p-1.5 md:p-2 rounded-full z-10"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ delay: 0.4 + i * 0.15, duration: 0.6 }}
               whileHover={{ scale: 1.2, rotate: 10 }}
             >
-              <GraduationCap size={16} className="text-orange-500" />
+              <GraduationCap size={14} className="text-orange-500 md:hidden" />
+              <GraduationCap size={16} className="text-orange-500 hidden md:block" />
             </motion.div>
             <h3 className="text-lg font-bold text-white">{item.title}</h3>
             <h4 className="text-orange-500 font-medium text-sm mb-2">{item.org}</h4>
@@ -163,11 +159,9 @@ function SkillsTab() {
             transition={{ duration: 0.4, delay: idx * 0.08 }}
             whileHover={{ 
               y: -6, 
-              scale: 1.02, 
-              borderColor: "rgba(249, 115, 22, 0.4)",
-              boxShadow: "0 10px 30px rgba(249,115,22,0.08)"
+              scale: 1.02
             }}
-            className="bg-[#111]/30 p-6 rounded-2xl border border-gray-900 transition-all duration-300 group"
+            className="bg-[#111]/30 p-6 rounded-2xl border border-gray-900 hover:border-orange-500/40 hover:shadow-[0_10px_30px_rgba(249,115,22,0.08)] transition-all duration-300 group"
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-black p-3 rounded-xl group-hover:shadow-[0_0_20px_rgba(249,115,22,0.25)] transition-shadow">
@@ -181,12 +175,9 @@ function SkillsTab() {
                   key={skill}
                   whileHover={{ 
                     scale: 1.1, 
-                    y: -2,
-                    backgroundColor: "rgba(249,115,22,0.15)",
-                    borderColor: "rgba(249,115,22,0.5)",
-                    color: "#f97316"
+                    y: -2
                   }}
-                  className="px-3 py-1 text-xs bg-black/60 text-gray-300 rounded-full border border-gray-800 hover:text-orange-400 transition-all cursor-default"
+                  className="px-3 py-1 text-xs bg-black/60 text-gray-300 rounded-full border border-gray-800 hover:bg-orange-500/15 hover:border-orange-500/50 hover:text-orange-400 transition-all duration-200 cursor-default"
                 >
                   {skill}
                 </motion.span>
@@ -247,12 +238,9 @@ function CertificationsTab() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
             whileHover={{ 
-              x: 8, 
-              backgroundColor: "rgba(17, 17, 17, 0.7)", 
-              borderColor: "rgba(249, 115, 22, 0.3)",
-              boxShadow: "0 4px 20px rgba(249,115,22,0.05)"
+              x: 8
             }}
-            className="flex items-start gap-4 bg-[#111]/30 p-5 rounded-2xl border border-gray-900 transition-all duration-300"
+            className="flex items-start gap-4 bg-[#111]/30 p-5 rounded-2xl border border-gray-900 hover:bg-[#111]/70 hover:border-orange-500/30 hover:shadow-[0_4px_20px_rgba(249,115,22,0.05)] transition-all duration-300"
           >
             <motion.div 
               className="bg-black p-3 rounded-xl shrink-0"

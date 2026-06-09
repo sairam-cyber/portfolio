@@ -157,26 +157,26 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
       <Particles />
       <div className="absolute top-0 right-0 w-full h-full bg-black z-0 slant-bg shadow-2xl" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row h-screen px-6 md:px-12 pt-32 md:pt-0">
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row min-h-screen md:h-screen px-6 md:px-12 pt-28 md:pt-0 pb-12 md:pb-0">
         {/* Left Side */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center h-full">
+        <div className="w-full md:w-1/2 flex flex-col justify-center min-h-[45vh] md:h-full">
           <motion.h2
             initial={{ opacity: 0, y: -20, letterSpacing: "-0.05em" }}
             animate={animateTrigger ? { opacity: 1, y: 0, letterSpacing: "0em" } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-2xl md:text-3xl font-medium text-gray-600 mb-2"
+            className="text-xl sm:text-2xl md:text-3xl font-medium text-gray-600 mb-2"
           >
             Hi, I am
           </motion.h2>
 
           <motion.h1
-            className="text-6xl md:text-8xl font-bold mb-4 tracking-tight leading-tight text-black py-1"
+            className="text-4xl sm:text-6xl md:text-8xl font-bold mb-4 tracking-tight leading-tight text-black py-1"
             variants={containerVariants}
             initial="hidden"
             animate={animateTrigger ? "visible" : "hidden"}
           >
             {nameFirst.map((word, i) => (
-              <motion.span key={i} className="inline-block mr-4" variants={wordVariants}>
+              <motion.span key={i} className="inline-block mr-3 sm:mr-4" variants={wordVariants}>
                 {word}
               </motion.span>
             ))}
@@ -242,12 +242,12 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
         </div>
 
         {/* Right Side - Image */}
-        <div className="w-full md:w-1/2 flex items-end justify-center h-full relative">
+        <div className="w-full md:w-1/2 flex items-end justify-center min-h-[40vh] md:h-full relative mt-8 md:mt-0">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="h-[55vh] md:h-[90vh] aspect-[681/1024] relative overflow-hidden"
+            className="h-[45vh] md:h-[90vh] aspect-[681/1024] relative overflow-hidden"
           >
             <Image
               src="/profile-pic.jpg"
