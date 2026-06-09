@@ -41,19 +41,26 @@ function ExperienceTab() {
         animate={{ height: "100%" }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       />
-      <div className="space-y-10">
+      <div className="space-y-6">
         {items.map((item, i) => (
           <motion.div
             key={i}
-            className="relative"
+            className="relative p-6 bg-[#111]/30 border border-gray-900 rounded-2xl transition-all duration-300"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.15 + i * 0.15 }}
+            whileHover={{ 
+              x: 8, 
+              backgroundColor: "rgba(17, 17, 17, 0.7)", 
+              borderColor: "rgba(249, 115, 22, 0.3)",
+              boxShadow: "0 4px 20px rgba(249,115,22,0.05)"
+            }}
           >
             <motion.div
-              className="absolute -left-[41px] top-1 bg-black border-2 border-orange-500 p-2 rounded-full"
-              animate={{ scale: [1, 1.3, 1] }}
+              className="absolute -left-[45px] top-6 bg-black border-2 border-orange-500 p-2 rounded-full z-10"
+              animate={{ scale: [1, 1.2, 1] }}
               transition={{ delay: 0.4 + i * 0.15, duration: 0.6 }}
+              whileHover={{ scale: 1.2, rotate: 10 }}
             >
               <Briefcase size={16} className="text-orange-500" />
             </motion.div>
@@ -98,19 +105,26 @@ function EducationTab() {
         animate={{ height: "100%" }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       />
-      <div className="space-y-10">
+      <div className="space-y-6">
         {items.map((item, i) => (
           <motion.div
             key={i}
-            className="relative"
+            className="relative p-6 bg-[#111]/30 border border-gray-900 rounded-2xl transition-all duration-300"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.15 + i * 0.15 }}
+            whileHover={{ 
+              x: 8, 
+              backgroundColor: "rgba(17, 17, 17, 0.7)", 
+              borderColor: "rgba(249, 115, 22, 0.3)",
+              boxShadow: "0 4px 20px rgba(249,115,22,0.05)"
+            }}
           >
             <motion.div
-              className="absolute -left-[41px] top-1 bg-black border-2 border-orange-500 p-2 rounded-full"
-              animate={{ scale: [1, 1.3, 1] }}
+              className="absolute -left-[45px] top-6 bg-black border-2 border-orange-500 p-2 rounded-full z-10"
+              animate={{ scale: [1, 1.2, 1] }}
               transition={{ delay: 0.4 + i * 0.15, duration: 0.6 }}
+              whileHover={{ scale: 1.2, rotate: 10 }}
             >
               <GraduationCap size={16} className="text-orange-500" />
             </motion.div>
@@ -146,23 +160,36 @@ function SkillsTab() {
             key={idx}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: idx * 0.1 }}
-            className="bg-[#111] p-6 rounded-2xl border border-gray-800 hover:border-orange-500/40 transition-colors group"
+            transition={{ duration: 0.4, delay: idx * 0.08 }}
+            whileHover={{ 
+              y: -6, 
+              scale: 1.02, 
+              borderColor: "rgba(249, 115, 22, 0.4)",
+              boxShadow: "0 10px 30px rgba(249,115,22,0.08)"
+            }}
+            className="bg-[#111]/30 p-6 rounded-2xl border border-gray-900 transition-all duration-300 group"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="bg-black p-3 rounded-xl group-hover:shadow-[0_0_20px_rgba(249,115,22,0.2)] transition-shadow">
+              <div className="bg-black p-3 rounded-xl group-hover:shadow-[0_0_20px_rgba(249,115,22,0.25)] transition-shadow">
                 <Icon size={18} className="text-orange-500" />
               </div>
               <h4 className="text-white font-semibold">{cat.title}</h4>
             </div>
             <div className="flex flex-wrap gap-2">
               {cat.skills.map((skill) => (
-                <span
+                <motion.span
                   key={skill}
-                  className="px-3 py-1 text-xs bg-black/60 text-gray-300 rounded-full border border-gray-800 hover:border-orange-500/40 hover:text-orange-400 transition-colors"
+                  whileHover={{ 
+                    scale: 1.1, 
+                    y: -2,
+                    backgroundColor: "rgba(249,115,22,0.15)",
+                    borderColor: "rgba(249,115,22,0.5)",
+                    color: "#f97316"
+                  }}
+                  className="px-3 py-1 text-xs bg-black/60 text-gray-300 rounded-full border border-gray-800 hover:text-orange-400 transition-all cursor-default"
                 >
                   {skill}
-                </span>
+                </motion.span>
               ))}
             </div>
           </motion.div>
@@ -218,16 +245,25 @@ function CertificationsTab() {
             key={i}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: i * 0.12 }}
-            className="flex items-start gap-4 bg-[#111] p-5 rounded-2xl border border-gray-800 hover:border-orange-500/30 transition-colors"
+            transition={{ duration: 0.4, delay: i * 0.1 }}
+            whileHover={{ 
+              x: 8, 
+              backgroundColor: "rgba(17, 17, 17, 0.7)", 
+              borderColor: "rgba(249, 115, 22, 0.3)",
+              boxShadow: "0 4px 20px rgba(249,115,22,0.05)"
+            }}
+            className="flex items-start gap-4 bg-[#111]/30 p-5 rounded-2xl border border-gray-900 transition-all duration-300"
           >
-            <div className="bg-black p-3 rounded-xl shrink-0">
+            <motion.div 
+              className="bg-black p-3 rounded-xl shrink-0"
+              whileHover={{ scale: 1.1 }}
+            >
               <Icon size={20} className="text-orange-500" />
-            </div>
+            </motion.div>
             <div>
               <h4 className="text-white font-semibold">{cert.title}</h4>
               <p className="text-orange-500 text-sm font-medium">{cert.issuer}</p>
-              <p className="text-gray-400 text-sm mt-1">{cert.desc}</p>
+              <p className="text-gray-400 text-sm mt-1 leading-relaxed">{cert.desc}</p>
             </div>
           </motion.div>
         );
