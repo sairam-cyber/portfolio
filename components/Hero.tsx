@@ -4,7 +4,6 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { Github, Linkedin, Mail, User, ChevronDown } from "lucide-react";
-import TransparentPortrait from "./TransparentPortrait";
 
 /* ── Magnetic wrapper ── */
 function Magnetic({ children }: { children: React.ReactNode }) {
@@ -187,13 +186,21 @@ export default function Hero() {
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="h-[55vh] md:h-[90vh] aspect-[681/1024] relative flex items-end justify-center"
+            className="h-[55vh] md:h-[90vh] aspect-[681/1024] relative overflow-hidden"
           >
-            <TransparentPortrait
+            <Image
               src="/profile-pic.jpg"
               alt="Sai Ram Bebarta"
-              className="w-full h-full"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover object-top transition-all duration-700"
+              priority
             />
+            {/* Seamless edge blending to merge the photo background into the black page background */}
+            <div className="absolute bottom-0 left-0 right-0 h-1/5 bg-gradient-to-t from-black to-transparent z-10" />
+            <div className="absolute top-0 bottom-0 left-0 w-1/5 bg-gradient-to-r from-black to-transparent z-10" />
+            <div className="absolute top-0 bottom-0 right-0 w-1/5 bg-gradient-to-l from-black to-transparent z-10" />
+            <div className="absolute top-0 left-0 right-0 h-1/5 bg-gradient-to-b from-black to-transparent z-10" />
           </motion.div>
         </div>
       </div>
