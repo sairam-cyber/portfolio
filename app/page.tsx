@@ -37,7 +37,7 @@ export default function Home() {
           animate={{ x: `${-activeSlide * 100}vw` }}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
         >
-          <div className="min-w-[100vw] h-screen overflow-y-auto"><Hero /></div>
+          <div className="min-w-[100vw] h-screen overflow-y-auto"><Hero isReady={!showWelcome} /></div>
           <div className="min-w-[100vw] h-screen overflow-y-auto"><About /></div>
           <div className="min-w-[100vw] h-screen overflow-y-auto"><Projects /></div>
           <div className="min-w-[100vw] h-screen overflow-y-auto"><Footer /></div>

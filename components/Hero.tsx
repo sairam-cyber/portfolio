@@ -68,11 +68,12 @@ function Particles() {
 }
 
 /* ── Typewriter hook ── */
-function useTypewriter(text: string, speed = 60, startDelay = 1200) {
+function useTypewriter(text: string, speed = 60, startDelay = 1200, trigger = true) {
   const [display, setDisplay] = useState("");
   const [done, setDone] = useState(false);
 
   useEffect(() => {
+    if (!trigger) return;
     const timeout = setTimeout(() => {
       let i = 0;
       const timer = setInterval(() => {
@@ -87,29 +88,69 @@ function useTypewriter(text: string, speed = 60, startDelay = 1200) {
       return () => clearInterval(timer);
     }, startDelay);
     return () => clearTimeout(timeout);
-  }, [text, speed, startDelay]);
+  }, [text, speed, startDelay, trigger]);
 
   return { display, done };
 }
 
 /* ── Main Hero ── */
-export default function Hero() {
+export default function Hero({ isReady = true }: { isReady?: boolean }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const { display: subtitle, done: subtitleDone } = useTypewriter("Full Stack Developer");
+  
+  // Wait to start typewriter until welcome screen is gone
+  const { display: subtitle, done: subtitleDone } = useTypewriter("Full Stack Developer", 60, 1000, isReady);
 
   const nameFirst = ["Sai", "Ram"];
   const nameLast = "Bebarta";
 
   const containerVariants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
+    visible: { 
+      transition: { 
+        staggerChildren: 0.12, 
+        delayChildren: 0.4 
+      } 
+    },
   };
 
   const wordVariants = {
-    hidden: { y: 80, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const } },
+    hidden: { y: "100%", opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1, 
+      transition: { 
+        duration: 0.8, 
+        ease: [0.16, 1, 0.3, 1] as const
+      } 
+    },
   };
+
+  const socialContainerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 1.8
+      }
+    }
+  };
+
+  const socialItemVariants = {
+    hidden: { scale: 0.5, opacity: 0, y: 20 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 260,
+        damping: 15
+      }
+    }
+  };
+
+  const animateTrigger = isReady && isInView;
 
   return (
     <section ref={ref} className="relative min-h-screen w-full flex flex-col md:flex-row overflow-hidden bg-[#e6e6e6]">
@@ -120,36 +161,39 @@ export default function Hero() {
         {/* Left Side */}
         <div className="w-full md:w-1/2 flex flex-col justify-center h-full">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: -20, letterSpacing: "-0.05em" }}
+            animate={animateTrigger ? { opacity: 1, y: 0, letterSpacing: "0em" } : {}}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-2xl md:text-3xl font-medium text-gray-600 mb-2"
           >
             Hi, I am
           </motion.h2>
 
           <motion.h1
-            className="text-6xl md:text-8xl font-bold mb-4 tracking-tight leading-tight text-black"
+            className="text-6xl md:text-8xl font-bold mb-4 tracking-tight leading-tight text-black overflow-hidden py-1"
             variants={containerVariants}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            animate={animateTrigger ? "visible" : "hidden"}
           >
-            {nameFirst.map((word, i) => (
-              <motion.span key={i} className="inline-block mr-4" variants={wordVariants}>
-                {word}
-              </motion.span>
-            ))}
+            <span className="inline-block overflow-hidden mr-4">
+              {nameFirst.map((word, i) => (
+                <motion.span key={i} className="inline-block mr-2" variants={wordVariants}>
+                  {word}
+                </motion.span>
+              ))}
+            </span>
             <br />
-            <motion.span className="inline-block text-black" variants={wordVariants}>
-              {nameLast}
-            </motion.span>
+            <span className="inline-block overflow-hidden">
+              <motion.span className="inline-block text-black" variants={wordVariants}>
+                {nameLast}
+              </motion.span>
+            </span>
           </motion.h1>
 
           <motion.h3
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.1, duration: 0.3 }}
-            className="text-xl md:text-2xl text-gray-500 mb-10 font-medium"
+            animate={animateTrigger ? { opacity: 1 } : {}}
+            className="text-xl md:text-2xl text-gray-500 mb-10 font-medium h-[2rem]"
           >
             <span className={!subtitleDone ? "typewriter-cursor pr-1" : ""}>
               {subtitle}
@@ -158,25 +202,44 @@ export default function Hero() {
 
           <motion.div
             className="flex gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 1.8, duration: 0.5 }}
+            variants={socialContainerVariants}
+            initial="hidden"
+            animate={animateTrigger ? "visible" : "hidden"}
           >
-            <Magnetic>
-              <a href="mailto:sairambebartall1@gmail.com" className="p-3 bg-gray-300/80 text-black rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-sm flex items-center justify-center">
-                <Mail size={22} />
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a href="https://github.com/sairam-cyber" target="_blank" rel="noreferrer" className="p-3 bg-gray-300/80 text-black rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-sm flex items-center justify-center">
-                <Github size={22} />
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a href="https://linkedin.com/in/sai-ram-bebarta" target="_blank" rel="noreferrer" className="p-3 bg-gray-300/80 text-black rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-sm flex items-center justify-center">
-                <Linkedin size={22} />
-              </a>
-            </Magnetic>
+            <motion.div variants={socialItemVariants}>
+              <Magnetic>
+                <a 
+                  href="mailto:sairambebarta999@gmail.com?subject=Collaboration%20Inquiry&body=Hi%20Sai%20Ram%2C%0A%0AI%20visited%20your%20portfolio%20and%20would%20love%20to%20connect%20regarding..." 
+                  className="p-3 bg-gray-300/80 text-black rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-sm flex items-center justify-center"
+                >
+                  <Mail size={22} />
+                </a>
+              </Magnetic>
+            </motion.div>
+            <motion.div variants={socialItemVariants}>
+              <Magnetic>
+                <a 
+                  href="https://github.com/sairam-cyber" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="p-3 bg-gray-300/80 text-black rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-sm flex items-center justify-center"
+                >
+                  <Github size={22} />
+                </a>
+              </Magnetic>
+            </motion.div>
+            <motion.div variants={socialItemVariants}>
+              <Magnetic>
+                <a 
+                  href="https://linkedin.com/in/sai-ram-bebarta" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="p-3 bg-gray-300/80 text-black rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-sm flex items-center justify-center"
+                >
+                  <Linkedin size={22} />
+                </a>
+              </Magnetic>
+            </motion.div>
           </motion.div>
         </div>
 
