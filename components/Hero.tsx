@@ -189,9 +189,10 @@ export default function Hero() {
             className="w-[85%] h-[85%] md:w-[90%] md:h-[90%] border border-gray-800 rounded-t-[3rem] bg-gradient-to-b from-[#151515] to-[#0a0a0a] relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
           >
             <Image
-              src="/profile-pic.png"
+              src="/profile-pic.jpg"
               alt="Sai Ram Bebarta"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover object-top filter grayscale hover:grayscale-0 transition-all duration-700"
               priority
             />
