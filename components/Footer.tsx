@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Copy, Check, Mail } from "lucide-react";
+import { Copy, Check, Mail, Linkedin, Github } from "lucide-react";
 
 export default function Footer() {
   const ref = useRef(null);
@@ -12,6 +12,9 @@ export default function Footer() {
   const [senderName, setSenderName] = useState("");
   const [senderEmail, setSenderEmail] = useState("");
   const [senderMessage, setSenderMessage] = useState("");
+
+  const [isContactsOpen, setIsContactsOpen] = useState(true);
+  const [isFindMeOpen, setIsFindMeOpen] = useState(true);
 
   const handleCopy = () => {
     navigator.clipboard.writeText("sairambebarta999@gmail.com");
@@ -27,6 +30,61 @@ export default function Footer() {
     const gmailUrl = `https://mail.google.com/mail/?extsrc=mailto&url=${encodeURIComponent(mailtoUrl)}`;
     
     window.open(gmailUrl, "_blank", "noopener,noreferrer");
+  };
+
+  const getFormattedDate = () => {
+    const date = new Date();
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]}`;
+  };
+
+  const highlightCode = (name: string, email: string, msg: string, dateStr: string) => {
+    return (
+      <pre className="font-mono text-xs md:text-sm leading-relaxed text-gray-400 select-none overflow-x-auto whitespace-pre-wrap">
+        <div>
+          <span className="text-pink-500">const</span>{" "}
+          <span className="text-blue-400">button</span> ={" "}
+          <span className="text-blue-300">document</span>.
+          <span className="text-green-400">querySelector</span>(
+          <span className="text-orange-400">&apos;#sendBtn&apos;</span>);
+        </div>
+        <br />
+        <div>
+          <span className="text-pink-500">const</span>{" "}
+          <span className="text-blue-400">message</span> = &#123;
+        </div>
+        <div className="pl-4">
+          <span className="text-blue-300">name</span>:{" "}
+          <span className="text-orange-400">&quot;{name || "Jonathan Davis"}&quot;</span>,
+        </div>
+        <div className="pl-4">
+          <span className="text-blue-300">email</span>:{" "}
+          <span className="text-orange-400">&quot;{email || "jonathan-davis@gmail.com"}&quot;</span>,
+        </div>
+        <div className="pl-4">
+          <span className="text-blue-300">message</span>:{" "}
+          <span className="text-orange-400">&quot;{msg || "Hey! Just checked your website..."}&quot;</span>,
+        </div>
+        <div className="pl-4">
+          <span className="text-blue-300">date</span>:{" "}
+          <span className="text-orange-400">&quot;{dateStr}&quot;</span>
+        </div>
+        <div>&#125;</div>
+        <br />
+        <div>
+          <span className="text-blue-400">button</span>.
+          <span className="text-green-400">addEventListener</span>(
+          <span className="text-orange-400">&apos;click&apos;</span>, () =&gt; &#123;
+        </div>
+        <div className="pl-4">
+          <span className="text-blue-400">form</span>.
+          <span className="text-green-400">send</span>(
+          <span className="text-blue-400">message</span>);
+        </div>
+        <div>&#125;)</div>
+      </pre>
+    );
   };
 
   return (
@@ -50,63 +108,138 @@ export default function Footer() {
         I am currently looking for new opportunities in Full Stack Web Development and backend architecture. Whether you have a question or just want to say hi, my inbox is always open!
       </motion.p>
 
-      {/* Terminal-styled Contact Form */}
-      <motion.form
-        onSubmit={handleSubmit}
-        className="w-full max-w-lg mx-auto flex flex-col gap-5 text-left bg-gray-950/40 border border-gray-900/60 rounded-3xl p-6 md:p-8 shadow-2xl backdrop-blur-xl mb-8"
+      {/* IDE Container */}
+      <motion.div
+        className="w-full max-w-6xl mx-auto bg-[#0b0f19]/80 border border-gray-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col h-[580px] mb-8 text-left backdrop-blur-xl"
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div>
-          <label className="text-gray-400 font-mono text-sm mb-2 block">
-            _name:
-          </label>
-          <input
-            type="text"
-            required
-            placeholder="Your name"
-            value={senderName}
-            onChange={(e) => setSenderName(e.target.value)}
-            className="w-full bg-[#0b1120]/60 border border-gray-800/80 rounded-xl px-4 py-3 text-white font-mono placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-all"
-          />
+        {/* Top Header Bar */}
+        <div className="bg-[#070a13] border-b border-gray-800/80 px-4 py-3 flex items-center justify-between shrink-0">
+          <div className="flex gap-2">
+            <span className="w-3 h-3 rounded-full bg-red-500/80 block" />
+            <span className="w-3 h-3 rounded-full bg-yellow-500/80 block" />
+            <span className="w-3 h-3 rounded-full bg-green-500/80 block" />
+          </div>
+          <span className="text-gray-400 font-mono text-xs md:text-sm">
+            contact-me.js — Portfolio IDE
+          </span>
+          <div className="w-12" /> {/* spacer */}
         </div>
 
-        <div>
-          <label className="text-gray-400 font-mono text-sm mb-2 block">
-            _email:
-          </label>
-          <input
-            type="email"
-            required
-            placeholder="your.email@example.com"
-            value={senderEmail}
-            onChange={(e) => setSenderEmail(e.target.value)}
-            className="w-full bg-[#0b1120]/60 border border-gray-800/80 rounded-xl px-4 py-3 text-white font-mono placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-all"
-          />
-        </div>
+        {/* Editor Main Content Area */}
+        <div className="flex flex-1 overflow-hidden">
+          {/* Left Panel: Explorer (hidden on mobile, visible on md+) */}
+          <div className="hidden md:flex flex-col w-64 bg-[#080d16] border-r border-gray-800/80 p-4 font-mono select-none overflow-y-auto shrink-0">
+            {/* Contacts dropdown */}
+            <div className="mb-6">
+              <button
+                onClick={() => setIsContactsOpen(!isContactsOpen)}
+                className="flex items-center justify-between w-full text-gray-300 hover:text-white text-xs font-semibold uppercase tracking-wider mb-2"
+              >
+                <span>contacts</span>
+                <span className="text-gray-500 transition-transform duration-200" style={{ transform: isContactsOpen ? 'rotate(0deg)' : 'rotate(-90deg)', display: 'inline-block' }}>
+                  ▼
+                </span>
+              </button>
+              {isContactsOpen && (
+                <div className="flex flex-col gap-2 pl-2 text-sm text-gray-400">
+                  <a href="mailto:sairambebarta999@gmail.com" className="flex items-center gap-2 hover:text-orange-500 transition-colors truncate">
+                    <Mail size={14} className="text-gray-500 shrink-0" />
+                    <span className="truncate">sairambebarta999@gmail.com</span>
+                  </a>
+                </div>
+              )}
+            </div>
 
-        <div>
-          <label className="text-gray-400 font-mono text-sm mb-2 block">
-            _message:
-          </label>
-          <textarea
-            required
-            placeholder="Your message here ..."
-            rows={4}
-            value={senderMessage}
-            onChange={(e) => setSenderMessage(e.target.value)}
-            className="w-full bg-[#0b1120]/60 border border-gray-800/80 rounded-xl px-4 py-3 text-white font-mono placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-all resize-y min-h-[110px]"
-          />
-        </div>
+            {/* Find me also in dropdown */}
+            <div>
+              <button
+                onClick={() => setIsFindMeOpen(!isFindMeOpen)}
+                className="flex items-center justify-between w-full text-gray-300 hover:text-white text-xs font-semibold uppercase tracking-wider mb-2"
+              >
+                <span>find-me-also-in</span>
+                <span className="text-gray-500 transition-transform duration-200" style={{ transform: isFindMeOpen ? 'rotate(0deg)' : 'rotate(-90deg)', display: 'inline-block' }}>
+                  ▼
+                </span>
+              </button>
+              {isFindMeOpen && (
+                <div className="flex flex-col gap-2 pl-2 text-sm text-gray-400">
+                  <a href="https://linkedin.com/in/sai-ram-bebarta" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-orange-500 transition-colors">
+                    <Linkedin size={14} className="text-gray-500 shrink-0" />
+                    <span>LinkedIn</span>
+                  </a>
+                  <a href="https://github.com/sairam-cyber" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-orange-500 transition-colors">
+                    <Github size={14} className="text-gray-500 shrink-0" />
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
 
-        <button
-          type="submit"
-          className="bg-[#1e293b] text-gray-300 hover:bg-[#2d3748] hover:text-white border border-transparent hover:border-orange-500/40 px-6 py-3 rounded-xl font-mono text-sm transition-all self-start shadow-md shadow-black/30 cursor-pointer"
-        >
-          submit-message
-        </button>
-      </motion.form>
+          {/* Middle Panel: Form */}
+          <div className="flex-1 bg-[#0b0f19] p-6 md:p-8 overflow-y-auto flex flex-col justify-between border-r border-gray-800/80">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              <div>
+                <label className="text-gray-400 font-mono text-sm mb-2 block">
+                  _name:
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Your name"
+                  value={senderName}
+                  onChange={(e) => setSenderName(e.target.value)}
+                  className="w-full bg-[#070a13]/80 border border-gray-800 rounded-xl px-4 py-3 text-white font-mono placeholder-gray-600 focus:outline-none focus:border-orange-500/50 transition-all text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="text-gray-400 font-mono text-sm mb-2 block">
+                  _email:
+                </label>
+                <input
+                  type="email"
+                  required
+                  placeholder="your.email@example.com"
+                  value={senderEmail}
+                  onChange={(e) => setSenderEmail(e.target.value)}
+                  className="w-full bg-[#070a13]/80 border border-gray-800 rounded-xl px-4 py-3 text-white font-mono placeholder-gray-600 focus:outline-none focus:border-orange-500/50 transition-all text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="text-gray-400 font-mono text-sm mb-2 block">
+                  _message:
+                </label>
+                <textarea
+                  required
+                  placeholder="Your message here ..."
+                  rows={4}
+                  value={senderMessage}
+                  onChange={(e) => setSenderMessage(e.target.value)}
+                  className="w-full bg-[#070a13]/80 border border-gray-800 rounded-xl px-4 py-3 text-white font-mono placeholder-gray-600 focus:outline-none focus:border-orange-500/50 transition-all text-sm resize-none h-[110px]"
+                />
+              </div>
+
+              <button
+                type="submit"
+                id="sendBtn"
+                className="bg-[#1e293b] text-gray-300 hover:bg-[#2d3748] hover:text-white border border-transparent hover:border-orange-500/40 px-6 py-3 rounded-xl font-mono text-sm transition-all self-start shadow-md shadow-black/30 cursor-pointer"
+              >
+                submit-message
+              </button>
+            </form>
+          </div>
+
+          {/* Right Panel: Live Code Preview (hidden on mobile/tablet, visible on lg+) */}
+          <div className="hidden lg:block w-[420px] bg-[#080d16] p-6 font-mono overflow-y-auto shrink-0">
+            {highlightCode(senderName, senderEmail, senderMessage, getFormattedDate())}
+          </div>
+        </div>
+      </motion.div>
 
       {/* Copy-able Quick Email widget */}
       <motion.div
