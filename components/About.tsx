@@ -178,6 +178,24 @@ function SkillsTab() {
 function CertificationsTab() {
   const certs = [
     {
+      title: "AI Data Quality Analyst",
+      issuer: "Rooman Technologies Pvt. Ltd.",
+      desc: "Certified as AI Data Quality Analyst.",
+      icon: Award,
+    },
+    {
+      title: "SAP Certified Associate",
+      issuer: "SAP",
+      desc: "ABAP Cloud, SAP Fiori, Business Process Integration.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Summer Research Internship",
+      issuer: "National Institute of Technology (NIT) Rourkela",
+      desc: "Certificate of Completion for Summer Research Internship.",
+      icon: BookOpen,
+    },
+    {
       title: "BPUT Odisha Hackathon Participant & Innovator",
       issuer: "Biju Patnaik University of Technology (BPUT), Odisha",
       desc: "Developed 'AI Resume Builder for Blue Collar Professionals' - a Flutter-based mobile application with multilingual support, ATS score evaluation, and template customization.",
@@ -187,24 +205,6 @@ function CertificationsTab() {
       title: "GIET Bhubaneswar Hackathon 2025 Participant",
       issuer: "GIET University, Bhubaneswar",
       desc: "Developed 'Navmarg.tech' - a smart product scanning system featuring QR/barcode scanning, ML object recognition, and multilingual support.",
-      icon: Award,
-    },
-    {
-      title: "Summer Research Internship",
-      issuer: "National Institute of Technology (NIT) Rourkela",
-      desc: "Certificate of Completion for Summer Research Internship.",
-      icon: BookOpen,
-    },
-    {
-      title: "SAP Certified Associate",
-      issuer: "SAP",
-      desc: "ABAP Cloud, SAP Fiori, Business Process Integration.",
-      icon: ShieldCheck,
-    },
-    {
-      title: "AI Data Quality Analyst",
-      issuer: "Rooman Technologies Pvt. Ltd.",
-      desc: "Certified as AI Data Quality Analyst.",
       icon: Award,
     },
   ];
