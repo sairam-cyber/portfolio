@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Copy, Check, Mail, Linkedin, Github } from "lucide-react";
 
@@ -16,6 +16,15 @@ export default function Footer() {
   const [isContactsOpen, setIsContactsOpen] = useState(true);
   const [isFindMeOpen, setIsFindMeOpen] = useState(true);
 
+  const [dateStr, setDateStr] = useState("Tue 9 Jun");
+
+  useEffect(() => {
+    const date = new Date();
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    setDateStr(`${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]}`);
+  }, []);
+
   const handleCopy = () => {
     navigator.clipboard.writeText("sairambebarta999@gmail.com");
     setCopied(true);
@@ -30,13 +39,6 @@ export default function Footer() {
     const gmailUrl = `https://mail.google.com/mail/?extsrc=mailto&url=${encodeURIComponent(mailtoUrl)}`;
     
     window.open(gmailUrl, "_blank", "noopener,noreferrer");
-  };
-
-  const getFormattedDate = () => {
-    const date = new Date();
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]}`;
   };
 
   const highlightCode = (name: string, email: string, msg: string, dateStr: string) => {
@@ -56,15 +58,15 @@ export default function Footer() {
         </div>
         <div className="pl-4">
           <span className="text-blue-300">name</span>:{" "}
-          <span className="text-orange-400">&quot;{name || "Jonathan Davis"}&quot;</span>,
+          <span className="text-orange-400">&quot;{name || "Rakesh Barik"}&quot;</span>,
         </div>
         <div className="pl-4">
           <span className="text-blue-300">email</span>:{" "}
-          <span className="text-orange-400">&quot;{email || "jonathan-davis@gmail.com"}&quot;</span>,
+          <span className="text-orange-400">&quot;{email || "rakesh-barik@gmail.com"}&quot;</span>,
         </div>
         <div className="pl-4">
           <span className="text-blue-300">message</span>:{" "}
-          <span className="text-orange-400">&quot;{msg || "Hey! Just checked your website..."}&quot;</span>,
+          <span className="text-orange-400">&quot;{msg || "Hey! Just checked your website and it looks awesome! Also, I checked your articled on Medium. Lerned a few nice tips.Thanks"}&quot;</span>
         </div>
         <div className="pl-4">
           <span className="text-blue-300">date</span>:{" "}
@@ -217,7 +219,7 @@ export default function Footer() {
 
           {/* Right Panel: Live Code Preview (hidden on mobile/tablet, visible on lg+) */}
           <div className="hidden lg:block w-[420px] bg-[#080d16] p-6 font-mono overflow-y-auto shrink-0">
-            {highlightCode(senderName, senderEmail, senderMessage, getFormattedDate())}
+            {highlightCode(senderName, senderEmail, senderMessage, dateStr)}
           </div>
         </div>
       </motion.div>

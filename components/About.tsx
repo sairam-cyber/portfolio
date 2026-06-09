@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
   Briefcase, GraduationCap, Code2, Database, Layout, Terminal,
-  Award, BookOpen, Wrench, ShieldCheck,
+  Award, BookOpen, Wrench, ShieldCheck, Sparkles, Brain,
 } from "lucide-react";
 
 /* ── Tab definitions ── */
@@ -129,10 +129,12 @@ function EducationTab() {
    ════════════════════════════════════════════ */
 function SkillsTab() {
   const categories = [
-    { title: "Languages", icon: Code2, skills: ["C", "Java", "Python", "JavaScript"] },
-    { title: "Frameworks & Libraries", icon: Layout, skills: ["Node.js", "Next.js", "React", "Flask", "REST APIs"] },
-    { title: "Tools & Platforms", icon: Terminal, skills: ["Git", "Github", "VSCode", "Figma", "Postman"] },
-    { title: "Databases", icon: Database, skills: ["MongoDB", "MySQL", "PostgreSQL", "SQLite"] },
+    { title: "Programming Languages", icon: Code2, skills: ["C", "JAVA", "Python", "Javascript"] },
+    { title: "Libraries & Frameworks", icon: Layout, skills: ["Flask", "Pandas", "NumPy", "TensorFlow", "REST APIs", "FastAPI", "Node.js", "Next.js", "React"] },
+    { title: "Generative AI", icon: Sparkles, skills: ["LangChain", "RAG Pipelines", "Prompt Engineering", "HuggingFace", "Gemini API", "Groq API"] },
+    { title: "Tools & Platforms", icon: Terminal, skills: ["Git", "Github", "AWS(Basics)", "Jupyter Notebook", "VSCode", "Figma", "Postman"] },
+    { title: "Databases", icon: Database, skills: ["MongoDB", "MySQL", "SQLite", "PostgreSQL"] },
+    { title: "Concepts", icon: Brain, skills: ["Agentic AI", "Multi-Agent Systems", "Semantic Search", "Embeddings", "Vector Retrieval"] },
   ];
 
   return (

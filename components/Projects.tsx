@@ -6,6 +6,11 @@ import { ExternalLink } from "lucide-react";
 
 const projects = [
   {
+    title: "NLP Engine Employee Data",
+    tech: "Flask, React, PostgreSQL, FAISS, Gemini API",
+    desc: "Built an AI-powered NLP Query Engine using Flask, React, and PostgreSQL for employee data retrieval, implementing document ingestion, embeddings, semantic search (FAISS), and Gemini powered natural language-to-SQL querying.",
+  },
+  {
     title: "Career Counselling Platform",
     tech: "FastAPI, Next.js, RAG, LangChain",
     desc: "Built a document intelligence assistant utilizing FastAPI and Next.js. Developed automated data ingestion pipelines and a dedicated dashboard for generating context-aware insights.",
@@ -43,13 +48,13 @@ export default function Projects() {
           Featured <span className="text-orange-500">Projects</span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 + idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.5, delay: 0.15 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -8, transition: { duration: 0.25 } }}
               className="shimmer-card bg-[#151515]/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 flex flex-col h-full hover:border-orange-500/30 hover:shadow-[0_8px_40px_rgba(249,115,22,0.08)] transition-colors duration-300"
             >
