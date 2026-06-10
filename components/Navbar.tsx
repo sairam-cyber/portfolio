@@ -24,9 +24,13 @@ export default function Navbar({ onNavigate, activeSlide }: NavbarProps) {
       {/* Home logo */}
       <button
         onClick={() => onNavigate(0)}
-        className="font-bold text-base sm:text-lg tracking-tighter text-white hover:text-orange-500 transition-colors mr-2 sm:mr-6"
+        className="flex items-center mr-2 sm:mr-6 hover:opacity-85 transition-opacity cursor-pointer"
       >
-        SB<span className="text-orange-500">.</span>
+        <img
+          src="/logo.png"
+          alt="Sai Ram Bebarta Logo"
+          className="h-7 sm:h-8 w-auto object-contain"
+        />
       </button>
 
       <div className="flex gap-4 sm:gap-8 text-xs sm:text-sm font-medium text-gray-300">

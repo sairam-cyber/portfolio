@@ -29,14 +29,18 @@ export default function WelcomeScreen({ onComplete }: { onComplete: () => void }
       onClick={dismiss}
     >
       <div className="text-center">
-        <motion.h1
+        <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-7xl md:text-9xl font-bold text-white mb-4"
+          className="flex justify-center mb-6"
         >
-          SB<span className="text-orange-500">.</span>
-        </motion.h1>
+          <img
+            src="/logo.png"
+            alt="Sai Ram Bebarta Logo"
+            className="h-24 md:h-32 w-auto object-contain"
+          />
+        </motion.div>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
