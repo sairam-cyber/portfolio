@@ -142,6 +142,160 @@
   animation: scroll-bounce 2.5s ease-in-out infinite;
 }
 
+/* ════════════════════════════════════════════════════
+   NEW PREMIUM ANIMATIONS
+   ════════════════════════════════════════════════════ */
+
+/* ── Animated gradient text ── */
+@keyframes gradient-text-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-text-animated {
+  background: linear-gradient(
+    270deg,
+    #f97316,
+    #fb923c,
+    #ffffff,
+    #f97316
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-text-flow 6s ease infinite;
+}
+
+/* ── Glow pulse ring ── */
+@keyframes glow-ring-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(249,115,22,0.4);
+  }
+  50% { 
+    box-shadow: 0 0 0 8px rgba(249,115,22,0);
+  }
+}
+
+.glow-ring-pulse {
+  animation: glow-ring-pulse 2s ease-in-out infinite;
+}
+
+/* ── Line sweep underline ── */
+@keyframes line-sweep {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+.line-sweep {
+  transform-origin: left;
+  animation: line-sweep 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Floating orbit dots ── */
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+}
+
+/* ── Parallax float ── */
+@keyframes parallax-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(1deg); }
+  75% { transform: translateY(10px) rotate(-1deg); }
+}
+
+.parallax-float {
+  animation: parallax-float 6s ease-in-out infinite;
+}
+
+/* ── Slide indicator morphing ── */
+@keyframes morph-indicator {
+  0%, 100% { border-radius: 9999px; }
+  50% { border-radius: 4px; }
+}
+
+/* ── Card 3D hover tilt ── */
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.3s ease;
+}
+
+/* ── Stagger fade up ── */
+@keyframes stagger-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Ambient glow bg ── */
+@keyframes ambient-glow {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: scale(1) translate(0, 0);
+  }
+  33% { 
+    opacity: 0.5;
+    transform: scale(1.1) translate(5%, -3%);
+  }
+  66% { 
+    opacity: 0.4;
+    transform: scale(0.95) translate(-3%, 5%);
+  }
+}
+
+.ambient-glow-1 {
+  animation: ambient-glow 8s ease-in-out infinite;
+}
+
+.ambient-glow-2 {
+  animation: ambient-glow 10s ease-in-out infinite reverse;
+}
+
+/* ── Code typing animation ── */
+@keyframes code-line-appear {
+  from { 
+    opacity: 0; 
+    transform: translateX(-10px); 
+    filter: blur(2px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+    filter: blur(0);
+  }
+}
+
+/* ── Noise texture for glassmorphism ── */
+.glass-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* ── Input focus glow ── */
+input:focus, textarea:focus {
+  box-shadow: 0 0 0 1px rgba(249,115,22,0.3), 0 0 20px rgba(249,115,22,0.08) !important;
+}
+
+/* ── Section divider gradient ── */
+.section-divider {
+  background: linear-gradient(90deg, transparent, rgba(249,115,22,0.3), transparent);
+  height: 1px;
+}
+
 /* ── Globals ── */
 html { scroll-behavior: smooth; }
 

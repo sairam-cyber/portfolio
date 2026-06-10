@@ -11,6 +11,7 @@ import CustomCursor from "@/components/CustomCursor";
 import WelcomeScreen from "@/components/WelcomeScreen";
 
 const SLIDE_COUNT = 4;
+const slideLabels = ["Home", "About", "Projects", "Contact"];
 
 export default function Home() {
   const [showWelcome, setShowWelcome] = useState(true);
@@ -44,20 +45,60 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Slide Indicators */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex gap-2">
+      {/* Enhanced Slide Indicators */}
+      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3">
         {Array.from({ length: SLIDE_COUNT }, (_, i) => (
-          <button
+          <motion.button
             key={i}
             onClick={() => setActiveSlide(i)}
-            className={`rounded-full transition-all duration-300 ${
-              activeSlide === i
-                ? "w-8 h-2 bg-orange-500"
-                : "w-2 h-2 bg-gray-600 hover:bg-gray-400"
-            }`}
-          />
+            className="relative group flex flex-col items-center"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {/* Label tooltip on hover */}
+            <motion.span
+              className="absolute -top-7 text-[10px] font-mono text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+              initial={false}
+            >
+              {slideLabels[i]}
+            </motion.span>
+            
+            {/* Dot / pill indicator */}
+            <motion.div
+              className="rounded-full transition-all duration-300"
+              animate={{
+                width: activeSlide === i ? 32 : 8,
+                height: 8,
+                backgroundColor: activeSlide === i ? "#f97316" : "#4b5563",
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              style={{
+                boxShadow: activeSlide === i ? "0 0 12px rgba(249,115,22,0.4)" : "none",
+              }}
+            />
+          </motion.button>
         ))}
       </div>
+
+      {/* Slide counter (bottom-right) */}
+      <motion.div
+        className="fixed bottom-8 right-8 z-50 font-mono text-xs text-gray-600 hidden md:flex items-center gap-1"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+      >
+        <motion.span
+          key={activeSlide}
+          className="text-orange-500 text-sm font-bold"
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          0{activeSlide + 1}
+        </motion.span>
+        <span>/</span>
+        <span>0{SLIDE_COUNT}</span>
+      </motion.div>
     </>
   );
 }
