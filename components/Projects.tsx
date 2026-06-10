@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ExternalLink, Folder, ArrowUpRight } from "lucide-react";
 
@@ -102,24 +102,33 @@ function TiltCard({
 function AnimatedCounter({ value, isInView }: { value: number; isInView: boolean }) {
   const [count, setCount] = useState(0);
 
-  useState(() => {
+  useEffect(() => {
     if (!isInView) return;
-    let start = 0;
-    const duration = 1500;
-    const startTime = performance.now();
 
-    const animate = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
+    let startTimestamp: number | null = null;
+    const duration = 1500;
+    let animationFrameId: number;
+
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const elapsed = timestamp - startTimestamp;
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
       setCount(Math.floor(eased * value));
-      if (progress < 1) requestAnimationFrame(animate);
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(step);
+      }
     };
 
-    requestAnimationFrame(animate);
-  });
+    animationFrameId = requestAnimationFrame(step);
 
-  return <span>{isInView ? count : 0}</span>;
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [value, isInView]);
+
+  return <span>{count}</span>;
 }
 
 export default function Projects() {
