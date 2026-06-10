@@ -80,16 +80,16 @@ function EducationTab() {
     {
       title: "BTech in Computer Science Engineering",
       org: "BPUT Rourkela • 2022 - 2026",
-      desc: "Specializing in Python backend architecture, modern web development, and highly scalable distributed systems.",
+      desc: "Specializing in Python backend development, Generative AI, and Agentic AI systems. CGPA: 7.03. Experienced in building RAG-based AI applications, multi-agent workflows using LangChain/LangGraph, and scalable REST APIs.",
     },
     {
       title: "12th (Higher Secondary)",
-      org: "Dailmai H S School • CHSE",
+      org: "Dailmai H S School • CHSE • 2022 Passout",
       desc: "Completed higher secondary education with a focus on Science stream.",
     },
     {
       title: "10th (Matriculation)",
-      org: "Sri Aurobindo Integral Education and Research Center • CBSE",
+      org: "Sri Aurobindo Integral Education and Research Center • CBSE • 2020 Passout",
       desc: "Completed matriculation under the CBSE curriculum.",
     },
   ];
