@@ -9,26 +9,31 @@ const projects = [
     title: "Career Counselling Platform",
     tech: "FastAPI, Next.js, RAG, LangChain",
     desc: "Built a document intelligence assistant utilizing FastAPI and Next.js. Developed automated data ingestion pipelines and a dedicated dashboard for generating context-aware insights.",
+    link: "https://github.com/sairam-cyber/career_counselling",
   },
   {
     title: "Customer Churn Prediction",
     tech: "React, Node.js, Python, MongoDB",
     desc: "Full-stack analytics platform. Engineered secure data pipelines with JWT authentication, real-time risk dashboards, and automated PDF reporting features.",
+    link: "https://github.com/sairam-cyber/customer_churn_prediction_platform",
   },
   {
     title: "RealTime Chatting",
     tech: "MERN Stack, Socket.io, Firebase",
     desc: "Modern instant messaging application featuring voice notes, secure file sharing, and smart replies. Secured with robust JWT authentication and structured for high concurrency.",
+    link: "https://github.com/sairam-cyber/realtime-chat-app",
   },
   {
     title: "NLP Engine Employee Data",
     tech: "Flask, React, PostgreSQL, FAISS, Gemini API",
     desc: "Built an AI-powered NLP Query Engine using Flask, React, and PostgreSQL for employee data retrieval, implementing document ingestion, embeddings, semantic search (FAISS), and Gemini powered natural language-to-SQL querying.",
+    link: "https://github.com/sairam-cyber/nlp-engine-employe-data",
   },
   {
     title: "Medlist: Health Care Platform",
     tech: "Next.js, MongoDB, Gemini API",
     desc: "Comprehensive healthcare solution tailored for efficient doctor discovery and automated appointment scheduling, complete with an intelligent integrated chatbot.",
+    link: "https://github.com/sairam-cyber/medlist-frontend",
   },
 ];
 
@@ -70,9 +75,14 @@ export default function Projects() {
               <p className="text-orange-500 text-sm font-medium mb-4">{project.tech}</p>
               <p className="text-gray-400 mb-8 flex-grow leading-relaxed">{project.desc}</p>
               <div className="flex gap-4 mt-auto">
-                <button className="flex items-center gap-2 text-sm font-medium text-white hover:text-orange-500 transition-colors">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm font-medium text-white hover:text-orange-500 transition-colors cursor-pointer"
+                >
                   <ExternalLink size={16} /> View Source
-                </button>
+                </a>
               </div>
             </motion.div>
           ))}
